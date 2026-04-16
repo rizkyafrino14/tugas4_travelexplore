@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Website - Booking Form</title>
+    
+    <!--=============== REMIX ICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    
+    <!--=============== CSS ===============-->
+    <style>
+        /*=============== GOOGLE FONTS ===============*/
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap");
+
+        /*=============== VARIABLES CSS ===============*/
+        :root {
+            --header-height: 3rem;
+            --hue-color: 190;
+            --first-color: hsl(var(--hue-color), 64%, 22%);
+            --first-color-second: hsl(var(--hue-color), 64%, 22%);
+            --first-color-alt: hsl(var(--hue-color), 64%, 15%);
+            --title-color: hsl(var(--hue-color), 64%, 18%);
+            --text-color: hsl(var(--hue-color), 24%, 35%);
+            --text-color-light: hsl(var(--hue-color), 8%, 60%);
+            --input-color: hsl(var(--hue-color), 24%, 97%);
+            --body-color: hsl(var(--hue-color), 100%, 99%);
+            --white-color: #FFF;
+            --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
+            --scroll-thumb-color: hsl(var(--hue-color), 12%, 75%);
+            --body-font: 'Open Sans', sans-serif;
+            --title-font: 'Raleway', sans-serif;
+            --biggest-font-size: 2.5rem;
+            --h1-font-size: 1.5rem;
+            --h2-font-size: 1.25rem;
+            --h3-font-size: 1rem;
+            --normal-font-size: .938rem;
+            --small-font-size: .813rem;
+            --smaller-font-size: .75rem;
+            --font-medium: 500;
+            --font-semi-bold: 600;
+            --mb-0-25: .25rem;
+            --mb-0-5: .5rem;
+            --mb-0-75: .75rem;
+            --mb-1: 1rem;
+            --mb-1-25: 1.25rem;
+            --mb-1-5: 1.5rem;
+            --mb-2: 2rem;
+            --mb-2-5: 2.5rem;
+            --z-tooltip: 10;
+            --z-fixed: 100;
+            --img-transition: .3s;
+            --img-hidden: hidden;
+            --img-scale: scale(1.1);
+        }
+
+        @media screen and (min-width: 968px) {
+            :root {
+                --biggest-font-size: 4rem;
+                --h1-font-size: 2.25rem;
+                --h2-font-size: 1.75rem;
+                --h3-font-size: 1.25rem;
+                --normal-font-size: 1rem;
+                --small-font-size: .875rem;
+                --smaller-font-size: .813rem;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            margin: var(--header-height) 0 0 0;
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+            background-color: var(--body-color);
+            color: var(--text-color);
+        }
+
+        h1, h2, h3 {
+            color: var(--title-color);
+            font-weight: var(--font-semi-bold);
+            font-family: var(--title-font);
+        }
+
+        .container {
+            max-width: 968px;
+            margin-left: var(--mb-1);
+            margin-right: var(--mb-1);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .section {
+            padding: 4.5rem 0 2.5rem;
+        }
+
+        .section__title {
+            font-size: var(--h2-font-size);
+            color: var(--title-color);
+            text-align: center;
+            text-transform: capitalize;
+            margin-bottom: var(--mb-2);
+        }
+
+        /*=============== PLACES ===============*/
+        .place__card, .place__img {
+            height: 230px;
+        }
+
+        .place__container {
+            grid-template-columns: repeat(2, max-content);
+            justify-content: center;
+        }
+
+        .place__card {
+            position: relative;
+            overflow: var(--img-hidden);
+            border-radius: 1rem;
+        }
+
+        .place__card:hover .place__img {
+            transform: var(--img-scale);
+        }
+
+        .place__img {
+            transition: var(--img-transition);
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .place__content, .place__title {
+            color: var(--white-color);
+        }
+
+        .place__content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: .75rem .75rem 1rem;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+            border-radius: 1rem;
+        }
+
+        .place__rating {
+            align-self: flex-end;
+            display: flex;
+            align-items: center;
+            background: rgba(0,0,0,0.5);
+            padding: 0.2rem 0.5rem;
+            border-radius: 2rem;
+        }
+
+        .place__rating-icon {
+            font-size: .75rem;
+            margin-right: var(--mb-0-25);
+            color: #ffd700;
+        }
+
+        .place__rating-number {
+            font-size: var(--small-font-size);
+            color: white;
+        }
+
+        .place__subtitle, .place__price {
+            display: block;
+        }
+
+        .place__title {
+            font-size: var(--h3-font-size);
+            margin-bottom: var(--mb-0-25);
+        }
+
+        .place__subtitle {
+            font-size: var(--smaller-font-size);
+            margin-bottom: var(--mb-1-25);
+        }
+
+        .place__price {
+            font-size: var(--small-font-size);
+            font-weight: var(--font-semi-bold);
+        }
+
+        .place__button {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: .75rem 1rem;
+            background-color: var(--first-color);
+            border-radius: 0.5rem 0 0 0;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .place__button:hover {
+            background-color: var(--first-color-alt);
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--first-color);
+            color: var(--white-color);
+            padding: 1rem 2rem;
+            font-weight: var(--font-semi-bold);
+            transition: .3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: var(--first-color-alt);
+        }
+
+        .button--flex {
+            display: flex;
+            align-items: center;
+            column-gap: .25rem;
+        }
+
+        /* ============== BOOKING MODAL ================== */
+        .booking__modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, .5);
+            backdrop-filter: blur(8px);
+            display: grid;
+            place-items: center;
+            padding: 0 1rem;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .4s ease-in-out;
+        }
+
+        .booking__modal-content {
+            background-color: var(--body-color);
+            padding: 2rem 1.5rem;
+            border-radius: 1.5rem;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50px);
+            transition: transform .4s ease-in-out;
+        }
+
+        .booking__modal-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .booking__modal-title {
+            font-size: 1.5rem;
+            color: var(--title-color);
+            margin-bottom: .5rem;
+        }
+
+        .booking__modal-description {
+            font-size: .85rem;
+            color: var(--text-color);
+        }
+
+        .input__group {
+            margin-bottom: 1.25rem;
+        }
+
+        .input__group label {
+            display: block;
+            font-size: .8rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+            color: var(--title-color);
+        }
+
+        .booking__input {
+            width: 100%;
+            background-color: var(--input-color);
+            color: var(--text-color);
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 0.8rem 1rem;
+            border-radius: .75rem;
+            outline: none;
+            transition: .3s;
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+        }
+
+        .booking__input:focus {
+            border-color: var(--first-color);
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .booking__modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 1.75rem;
+            color: var(--title-color);
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .booking__modal-close:hover {
+            color: #ff4d4d;
+            transform: rotate(90deg);
+        }
+
+        .active-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .active-modal .booking__modal-content {
+            transform: translateY(0);
+        }
+
+        .booking__button {
+            width: 100%;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .price-detail {
+            background-color: var(--input-color);
+            padding: 0.8rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: var(--small-font-size);
+        }
+
+        .price-row.total {
+            font-weight: var(--font-semi-bold);
+            color: var(--title-color);
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 0.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .success-message {
+            background-color: #4caf50;
+            color: white;
+            padding: 0.8rem;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-size: var(--small-font-size);
+            display: none;
+        }
+
+        @media screen and (min-width: 568px) {
+            .place__container {
+                grid-template-columns: repeat(3, max-content);
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .container {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .place__container {
+                gap: 2rem;
+            }
+            .place__card, .place__img {
+                height: 263px;
+            }
+        }
+
+        @media screen and (max-width: 340px) {
+            .place__container {
+                grid-template-columns: max-content;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="section">
+        <h2 class="section__title">Destinasi Populer</h2>
+        
+        <div class="place__container container grid">
+            <!-- PLACES CARD 1 - Bali -->
+            <div class="place__card" data-destination="Bali" data-location="Indonesia" data-price="2499">
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=300&fit=crop" alt="Bali" class="place__img" />
+                <div class="place__content">
+                    <span class="place__rating">
+                        <i class="ri-star-fill place__rating-icon"></i>
+                        <span class="place__rating-number">4,8</span>
+                    </span>
+                    <div class="place__data">
+                        <h3 class="place__title">Bali</h3>
+                        <span class="place__subtitle">Indonesia</span>
+                        <span class="place__price">$2499</span>
+                    </div>
+                </div>
+                <div class="place__button button booking-trigger">
+                    <i class="ri-arrow-right-line"></i>
+                </div>
+            </div>
+
+            <!-- PLACES CARD 2 - Bora Bora -->
+            <div class="place__card" data-destination="Bora Bora" data-location="Polinesia" data-price="1599">
+                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400&h=300&fit=crop" alt="Bora Bora" class="place__img" />
+                <div class="place__content">
+                    <span class="place__rating">
+                        <i class="ri-star-fill place__rating-icon"></i>
+                        <span class="place__rating-number">5,0</span>
+                    </span>
+                    <div class="place__data">
+                        <h3 class="place__title">Bora Bora</h3>
+                        <span class="place__subtitle">Polinesia</span>
+                        <span class="place__price">$1599</span>
+                    </div>
+                </div>
+                <div class="place__button button booking-trigger">
+                    <i class="ri-arrow-right-line"></i>
+                </div>
+            </div>
+
+            <!-- PLACES CARD 3 - Hawaii -->
+            <div class="place__card" data-destination="Hawaii" data-location="EE.UU" data-price="3499">
+                <img src="https://images.unsplash.com/photo-1505852903341-fc8d3db10436?w=400&h=300&fit=crop" alt="Hawaii" class="place__img" />
+                <div class="place__content">
+                    <span class="place__rating">
+                        <i class="ri-star-fill place__rating-icon"></i>
+                        <span class="place__rating-number">4,9</span>
+                    </span>
+                    <div class="place__data">
+                        <h3 class="place__title">Hawaii</h3>
+                        <span class="place__subtitle">EE.UU</span>
+                        <span class="place__price">$3499</span>
+                    </div>
+                </div>
+                <div class="place__button button booking-trigger">
+                    <i class="ri-arrow-right-line"></i>
+                </div>
+            </div>
+
+            <!-- PLACES CARD 4 - Whitehaven -->
+            <div class="place__card" data-destination="Whitehaven" data-location="Australia" data-price="2499">
+                <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&h=300&fit=crop" alt="Whitehaven" class="place__img" />
+                <div class="place__content">
+                    <span class="place__rating">
+                        <i class="ri-star-fill place__rating-icon"></i>
+                        <span class="place__rating-number">4,8</span>
+                    </span>
+                    <div class="place__data">
+                        <h3 class="place__title">Whitehaven</h3>
+                        <span class="place__subtitle">Australia</span>
+                        <span class="place__price">$2499</span>
+                    </div>
+                </div>
+                <div class="place__button button booking-trigger">
+                    <i class="ri-arrow-right-line"></i>
+                </div>
+            </div>
+
+            <!-- PLACES CARD 5 - Hvar -->
+            <div class="place__card" data-destination="Hvar" data-location="Croacia" data-price="1999">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop" alt="Hvar" class="place__img" />
+                <div class="place__content">
+                    <span class="place__rating">
+                        <i class="ri-star-fill place__rating-icon"></i>
+                        <span class="place__rating-number">4,8</span>
+                    </span>
+                    <div class="place__data">
+                        <h3 class="place__title">Hvar</h3>
+                        <span class="place__subtitle">Croacia</span>
+                        <span class="place__price">$1999</span>
+                    </div>
+                </div>
+                <div class="place__button button booking-trigger">
+                    <i class="ri-arrow-right-line"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING MODAL -->
+    <div id="bookingModal" class="booking__modal">
+        <div class="booking__modal-content">
+            <div class="booking__modal-close">
+                <i class="ri-close-line"></i>
+            </div>
+            
+            <div class="booking__modal-header">
+                <h3 class="booking__modal-title">✈️ Booking Wisata</h3>
+                <p class="booking__modal-description" id="modalDestName">Pilih destinasi favorit Anda</p>
+            </div>
+            
+            <form id="bookingForm">
+                <div class="input__group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" class="booking__input" id="fullName" placeholder="Masukkan nama lengkap" required>
+                </div>
+                
+                <div class="input__group">
+                    <label>Email</label>
+                    <input type="email" class="booking__input" id="email" placeholder="email@example.com" required>
+                </div>
+                
+                <div class="input__group">
+                    <label>Tanggal Keberangkatan</label>
+                    <input type="date" class="booking__input" id="travelDate" required>
+                </div>
+                
+                <div class="input__group">
+                    <label>Jumlah Peserta</label>
+                    <input type="number" class="booking__input" id="ticketQty" min="1" value="1" required>
+                </div>
+                
+                <div class="price-detail">
+                    <div class="price-row">
+                        <span>Harga per orang</span>
+                        <span id="pricePerPerson">$0</span>
+                    </div>
+                    <div class="price-row total">
+                        <span><strong>Total Harga</strong></span>
+                        <span id="totalPrice"><strong>$0</strong></span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="button button--flex booking__button">
+                    Pesan Sekarang <i class="ri-arrow-right-line"></i>
+                </button>
+                
+                <div id="successMsg" class="success-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Data destinasi yang dipilih
+        let selectedDestination = {
+            name: '',
+            location: '',
+            price: 0
+        };
+
+        // Ambil elemen DOM
+        const modal = document.getElementById('bookingModal');
+        const modalDestName = document.getElementById('modalDestName');
+        const pricePerPersonSpan = document.getElementById('pricePerPerson');
+        const totalPriceSpan = document.getElementById('totalPrice');
+        const ticketQtyInput = document.getElementById('ticketQty');
+        const bookingForm = document.getElementById('bookingForm');
+        const successMsgDiv = document.getElementById('successMsg');
+        const closeModalBtn = document.querySelector('.booking__modal-close');
+
+        // Fungsi update total harga
+        function updateTotalPrice() {
+            let qty = parseInt(ticketQtyInput.value);
+            if (isNaN(qty) || qty < 1) qty = 1;
+            const total = selectedDestination.price * qty;
+            totalPriceSpan.innerHTML = `<strong>$${total}</strong>`;
+            return total;
+        }
+
+        // Event listener perubahan jumlah tiket
+        ticketQtyInput.addEventListener('input', function() {
+            updateTotalPrice();
+        });
+
+        // Fungsi buka modal
+        function openBookingModal(destName, locationName, price) {
+            selectedDestination = {
+                name: destName,
+                location: locationName,
+                price: price
+            };
+            
+            // Update tampilan modal
+            modalDestName.innerHTML = `${destName}, ${locationName}`;
+            pricePerPersonSpan.innerHTML = `$${price}`;
+            
+            // Reset form
+            document.getElementById('fullName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('travelDate').value = '';
+            ticketQtyInput.value = '1';
+            successMsgDiv.style.display = 'none';
+            successMsgDiv.innerHTML = '';
+            
+            updateTotalPrice();
+            
+            // Tampilkan modal dengan animasi
+            modal.classList.add('active-modal');
+        }
+
+        // Fungsi tutup modal
+        function closeModal() {
+            modal.classList.remove('active-modal');
+        }
+
+        // Event listener untuk semua tombol panah
+        const triggerButtons = document.querySelectorAll('.booking-trigger');
+        triggerButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = button.closest('.place__card');
+                if (!card) return;
+                
+                // Ambil data dari atribut data-* atau dari elemen dalam card
+                const destination = card.getAttribute('data-destination') || 
+                                   card.querySelector('.place__title')?.innerText || 'Destinasi';
+                const location = card.getAttribute('data-location') || 
+                                card.querySelector('.place__subtitle')?.innerText || '';
+                
+                let priceText = card.querySelector('.place__price')?.innerText || '$0';
+                let price = parseInt(priceText.replace(/[^0-9]/g, ''));
+                if (isNaN(price)) price = 0;
+                
+                openBookingModal(destination, location, price);
+            });
+        });
+
+        // Tutup modal dengan tombol close
+        closeModalBtn.addEventListener('click', closeModal);
+        
+        // Tutup modal jika klik di luar konten
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Handle submit form booking
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const travelDate = document.getElementById('travelDate').value;
+            const qty = parseInt(ticketQtyInput.value);
+            
+            if (!fullName) {
+                alert('Silakan masukkan nama lengkap');
+                return;
+            }
+            if (!email) {
+                alert('Silakan masukkan email');
+                return;
+            }
+            if (!email.includes('@')) {
+                alert('Masukkan email yang valid');
+                return;
+            }
+            if (!travelDate) {
+                alert('Silakan pilih tanggal keberangkatan');
+                return;
+            }
+            if (qty < 1) {
+                alert('Jumlah peserta minimal 1');
+                return;
+            }
+            
+            const total = selectedDestination.price * qty;
+            
+            // Tampilkan pesan sukses
+            successMsgDiv.innerHTML = `✅ Pemesanan berhasil!<br>
+                                        <strong>${selectedDestination.name}</strong> (${qty} tiket)<br>
+                                        Total: $${total}<br>
+                                        Kami akan mengirim detail ke ${email}`;
+            successMsgDiv.style.display = 'block';
+            
+            // Optional: reset form setelah 2 detik dan tutup modal
+            setTimeout(() => {
+                if (confirm('Booking berhasil disimpan! Tutup form?')) {
+                    closeModal();
+                }
+            }, 1000);
+        });
+
+        // Set minimum date untuk tanggal (hari ini)
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('travelDate');
+        if (dateInput) dateInput.min = today;
+    </script>
+</body>
+</html>
