@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bali - Pulau Surga | TravelWeb</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========== Variabel CSS (sama dengan main site) ========== */
+    :root {
+      --header-height: 3rem;
+      --hue-color: 190;
+      --first-color: hsl(190, 64%, 22%);
+      --first-color-second: hsl(190, 64%, 22%);
+      --first-color-alt: hsl(190, 64%, 15%);
+      --title-color: hsl(190, 64%, 18%);
+      --text-color: hsl(190, 24%, 35%);
+      --text-color-light: hsl(190, 8%, 60%);
+      --input-color: hsl(190, 24%, 97%);
+      --body-color: hsl(190, 100%, 99%);
+      --white-color: #FFF;
+      --scroll-bar-color: hsl(190, 12%, 90%);
+      --scroll-thumb-color: hsl(190, 12%, 75%);
+      --body-font: 'Open Sans', sans-serif;
+      --title-font: 'Raleway', sans-serif;
+      --biggest-font-size: 2.5rem;
+      --h1-font-size: 1.5rem;
+      --h2-font-size: 1.25rem;
+      --h3-font-size: 1rem;
+      --normal-font-size: .938rem;
+      --small-font-size: .813rem;
+      --smaller-font-size: .75rem;
+      --font-medium: 500;
+      --font-semi-bold: 600;
+      --mb-0-25: .25rem;
+      --mb-0-5: .5rem;
+      --mb-0-75: .75rem;
+      --mb-1: 1rem;
+      --mb-1-25: 1.25rem;
+      --mb-1-5: 1.5rem;
+      --mb-2: 2rem;
+      --mb-2-5: 2.5rem;
+      --z-tooltip: 10;
+      --z-fixed: 100;
+      --img-transition: .3s;
+      --img-hidden: hidden;
+      --img-scale: scale(1.1);
+    }
+
+    @media screen and (min-width: 968px) {
+      :root {
+        --biggest-font-size: 4rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.75rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+      }
+    }
+
+    body.dark-theme {
+      --first-color-second: hsl(190, 54%, 12%);
+      --title-color: hsl(190, 24%, 95%);
+      --text-color: hsl(190, 8%, 75%);
+      --input-color: hsl(190, 29%, 16%);
+      --body-color: hsl(190, 29%, 12%);
+      --scroll-bar-color: hsl(190, 12%, 48%);
+      --scroll-thumb-color: hsl(190, 12%, 36%);
+    }
+
+    /* ========== Base ========== */
+    * { box-sizing: border-box; padding: 0; margin: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--body-font);
+      font-size: var(--normal-font-size);
+      background-color: var(--body-color);
+      color: var(--text-color);
+    }
+    h1, h2, h3 { color: var(--title-color); font-weight: var(--font-semi-bold); font-family: var(--title-font); }
+    ul { list-style: none; }
+    a { text-decoration: none; }
+    img { max-width: 100%; height: auto; }
+    button { cursor: pointer; border: none; font-family: var(--body-font); font-size: var(--normal-font-size); }
+    .main { overflow-x: hidden; }
+
+    /* ========== Reusable ========== */
+    .section { padding: 4.5rem 0 2.5rem; }
+    .section__title {
+      font-size: var(--h2-font-size);
+      color: var(--title-color);
+      text-align: center;
+      text-transform: capitalize;
+      margin-bottom: var(--mb-2);
+    }
+    .container { max-width: 968px; margin-left: var(--mb-1); margin-right: var(--mb-1); }
+    .grid { display: grid; gap: 1.5rem; }
+
+    /* ========== Header ========== */
+    .header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: var(--z-fixed);
+      background-color: transparent;
+      transition: .4s;
+    }
+    .nav {
+      height: var(--header-height);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav__logo { color: var(--white-color); font-weight: var(--font-semi-bold); font-family: var(--title-font); font-size: 1.1rem; }
+    .nav__toggle { color: var(--white-color); font-size: 1.2rem; cursor: pointer; }
+    .nav__menu { position: relative; }
+
+    @media screen and (max-width: 767px) {
+      .nav__menu {
+        position: fixed;
+        background-color: var(--body-color);
+        top: 0; right: -100%;
+        width: 70%; height: 100%;
+        box-shadow: -1px 0 4px rgba(14,55,63,.15);
+        padding: 3rem;
+        transition: .4s;
+      }
+    }
+
+    .nav__list { display: flex; flex-direction: column; row-gap: 2.5rem; }
+    .nav__link { color: var(--text-color-light); font-weight: var(--font-semi-bold); text-transform: uppercase; }
+    .nav__link:hover { color: var(--text-color); }
+    .nav__close { position: absolute; top: .75rem; right: 1rem; font-size: 1.5rem; color: var(--title-color); cursor: pointer; }
+    .show-menu { right: 0; }
+    .scroll-header { background-color: var(--body-color); box-shadow: 0 0 4px rgba(14,55,63,.15); }
+    .scroll-header .nav__logo,
+    .scroll-header .nav__toggle { color: var(--title-color); }
+    .scroll-header .nav__link { color: var(--text-color); }
+    .active-link { position: relative; color: var(--title-color); }
+    .active-link::before {
+      content: '';
+      position: absolute;
+      background-color: var(--white-color);
+      width: 100%; height: 2px;
+      bottom: -.75rem; left: 0;
+    }
+    .scroll-header .active-link::before { background-color: var(--title-color); }
+
+    /* ========== Hero Bali ========== */
+    .bali-hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .bali-hero__bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.1) 0%,
+        rgba(0,0,0,.15) 50%,
+        rgba(0,0,0,.55) 100%
+      ),
+      url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1600&q=80') center/cover no-repeat;
+    }
+    .bali-hero__container {
+      position: relative;
+      width: 100%;
+      padding: 0 var(--mb-1) 4rem;
+    }
+    .bali-hero__badge {
+      display: inline-block;
+      background-color: var(--first-color);
+      color: var(--white-color);
+      font-size: var(--smaller-font-size);
+      font-weight: var(--font-semi-bold);
+      padding: .35rem .85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: var(--mb-0-75);
+    }
+    .bali-hero__title {
+      font-size: var(--biggest-font-size);
+      color: var(--white-color);
+      font-weight: var(--font-medium);
+      line-height: 1.15;
+      margin-bottom: var(--mb-1);
+    }
+    .bali-hero__subtitle {
+      color: rgba(255,255,255,.85);
+      font-size: var(--normal-font-size);
+      max-width: 520px;
+      margin-bottom: var(--mb-2);
+      line-height: 1.7;
+    }
+    .bali-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .bali-hero__stats {
+      position: absolute;
+      right: var(--mb-1);
+      bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .bali-hero__stat {
+      background-color: rgba(255,255,255,.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.25);
+      padding: .75rem 1.25rem;
+      text-align: center;
+      min-width: 90px;
+    }
+    .bali-hero__stat-number {
+      display: block;
+      font-size: var(--h2-font-size);
+      font-weight: var(--font-semi-bold);
+      color: var(--white-color);
+      font-family: var(--title-font);
+    }
+    .bali-hero__stat-label {
+      font-size: var(--smaller-font-size);
+      color: rgba(255,255,255,.8);
+    }
+    .bali-hero__scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--white-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .35rem;
+      font-size: var(--smaller-font-size);
+      opacity: .8;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+    /* ========== Buttons ========== */
+    .button {
+      display: inline-block;
+      background-color: var(--first-color);
+      color: var(--white-color);
+      padding: 1rem 2rem;
+      font-weight: var(--font-semi-bold);
+      transition: .3s;
+    }
+    .button:hover { background-color: var(--first-color-alt); }
+    .button--outline {
+      background: transparent;
+      border: 2px solid var(--white-color);
+      color: var(--white-color);
+    }
+    .button--outline:hover { background-color: rgba(255,255,255,.15); }
+    .button--flex { display: flex; align-items: center; column-gap: .4rem; }
+
+    /* ========== About Bali ========== */
+    .about__container { row-gap: 2.5rem; }
+    .about__data { text-align: center; }
+    .about__description { margin-bottom: var(--mb-2); line-height: 1.8; }
+    .about__highlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: var(--mb-2);
+    }
+    .about__highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      font-size: var(--small-font-size);
+      color: var(--text-color);
+    }
+    .about__highlight-item i { color: var(--first-color); font-size: 1rem; margin-top: 1px; }
+    .about__img {
+      display: flex;
+      column-gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .about__img-overlay { overflow: var(--img-hidden); }
+    .about__img-one { width: 130px; transition: var(--img-transition); }
+    .about__img-two { width: 180px; transition: var(--img-transition); }
+    .about__img-one:hover, .about__img-two:hover { transform: var(--img-scale); }
+
+    /* ========== Destinasi ========== */
+    .destinations__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .dest__card {
+      position: relative;
+      overflow: var(--img-hidden);
+      border-radius: 2px;
+    }
+    .dest__card--large { grid-row: span 2; }
+    .dest__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: var(--img-transition);
+      min-height: 180px;
+    }
+    .dest__card--large .dest__img { min-height: 380px; }
+    .dest__card:hover .dest__img { transform: var(--img-scale); }
+    .dest__overlay {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      background: linear-gradient(transparent, rgba(0,0,0,.7));
+      padding: 1.5rem .75rem .75rem;
+    }
+    .dest__title { color: var(--white-color); font-size: var(--h3-font-size); margin-bottom: .15rem; }
+    .dest__sub { color: rgba(255,255,255,.8); font-size: var(--smaller-font-size); display: block; }
+    .dest__tag {
+      position: absolute;
+      top: .6rem; right: .6rem;
+      background-color: var(--first-color);
+      color: var(--white-color);
+      font-size: var(--smaller-font-size);
+      padding: .2rem .6rem;
+      font-weight: var(--font-semi-bold);
+    }
+
+    /* ========== Paket Wisata ========== */
+    .packages { background-color: var(--input-color); }
+    .packages__grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .package__card {
+      background-color: var(--white-color);
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(14,55,63,.08);
+      transition: transform .3s;
+    }
+    .package__card:hover { transform: translateY(-4px); }
+    .package__img-wrapper { overflow: var(--img-hidden); height: 200px; }
+    .package__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--img-transition);
+    }
+    .package__card:hover .package__img { transform: var(--img-scale); }
+    .package__body { padding: 1.25rem; }
+    .package__category {
+      font-size: var(--smaller-font-size);
+      color: var(--first-color);
+      font-weight: var(--font-semi-bold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--mb-0-5);
+    }
+    .package__title { font-size: var(--h3-font-size); margin-bottom: var(--mb-0-5); }
+    .package__meta {
+      display: flex;
+      gap: 1rem;
+      font-size: var(--smaller-font-size);
+      color: var(--text-color-light);
+      margin-bottom: var(--mb-1);
+    }
+    .package__meta span { display: flex; align-items: center; gap: .25rem; }
+    .package__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--input-color);
+      padding-top: 1rem;
+      margin-top: var(--mb-0-75);
+    }
+    .package__price-label { font-size: var(--smaller-font-size); color: var(--text-color-light); }
+    .package__price {
+      font-size: var(--h2-font-size);
+      font-weight: var(--font-semi-bold);
+      color: var(--title-color);
+      font-family: var(--title-font);
+    }
+    .package__price span { font-size: var(--smaller-font-size); color: var(--text-color-light); font-weight: 400; }
+
+    /* ========== Tips ========== */
+    .tips__grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .tip__card {
+      display: flex;
+      gap: 1rem;
+      padding: 1.25rem;
+      background-color: var(--input-color);
+      border-left: 3px solid var(--first-color);
+    }
+    .tip__icon {
+      font-size: 1.5rem;
+      color: var(--first-color);
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .tip__title {
+      font-size: var(--normal-font-size);
+      margin-bottom: .25rem;
+    }
+    .tip__text {
+      font-size: var(--small-font-size);
+      line-height: 1.7;
+      color: var(--text-color);
+    }
+
+    /* ========== Galeri ========== */
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .5rem;
+    }
+    .gallery__item {
+      overflow: var(--img-hidden);
+      aspect-ratio: 1;
+    }
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--img-transition);
+    }
+    .gallery__item:hover img { transform: var(--img-scale); }
+    .gallery__item--wide { grid-column: span 2; aspect-ratio: 2/1; }
+
+    /* ========== CTA Section ========== */
+    .cta__bg {
+      background-color: var(--first-color-second);
+      padding: 3.5rem 0;
+    }
+    .cta__content { text-align: center; }
+    .cta__title { font-size: var(--h1-font-size); color: var(--white-color); margin-bottom: var(--mb-1); }
+    .cta__description { color: rgba(255,255,255,.85); max-width: 500px; margin: 0 auto var(--mb-2-5); line-height: 1.7; }
+    .cta__actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    /* ========== Booking Modal ========== */
+    .booking__modal {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,.4);
+      display: grid;
+      place-items: center;
+      padding: 0 1rem;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all .4s ease-in-out;
+    }
+    .booking__modal-content {
+      background-color: var(--body-color);
+      padding: 3rem 2.5rem;
+      border-radius: 1.5rem;
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,.2);
+      transform: translateY(-40px);
+      transition: transform .4s ease-in-out;
+    }
+    .booking__modal-header { text-align: center; margin-bottom: 1.75rem; }
+    .booking__modal-title { font-size: 1.5rem; color: var(--title-color); margin-bottom: .4rem; }
+    .booking__modal-description { font-size: .85rem; color: var(--text-color); }
+    .input__group { margin-bottom: 1.1rem; }
+    .input__group label { display: block; font-size: .8rem; font-weight: 600; margin-bottom: .4rem; color: var(--title-color); }
+    .booking__input {
+      width: 100%;
+      background-color: var(--input-color);
+      color: var(--text-color);
+      border: 1px solid rgba(0,0,0,.1);
+      padding: .85rem 1rem;
+      border-radius: .75rem;
+      outline: none;
+      transition: .3s;
+      font-family: var(--body-font);
+    }
+    .booking__input:focus { border-color: var(--first-color); }
+    .booking__modal-close {
+      position: absolute;
+      top: 1.25rem; right: 1.25rem;
+      font-size: 1.6rem;
+      color: var(--title-color);
+      cursor: pointer;
+      transition: .3s;
+      background: none;
+    }
+    .booking__modal-close:hover { color: #e74c3c; transform: rotate(90deg); }
+    .active-modal { opacity: 1; visibility: visible; }
+    .active-modal .booking__modal-content { transform: translateY(0); }
+    .booking__button { width: 100%; justify-content: center; margin-top: .75rem; padding: .9rem; }
+
+    /* ========== Footer ========== */
+    .footer { padding-top: 4rem; }
+    .footer__container { row-gap: 3rem; }
+    .footer__content { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); row-gap: 2rem; }
+    .footer__title, .footer__subtitle { font-size: var(--h3-font-size); }
+    .footer__title { margin-bottom: var(--mb-0-5); }
+    .footer__description { margin-bottom: var(--mb-1-5); font-size: var(--small-font-size); line-height: 1.7; }
+    .footer__social { font-size: 1.25rem; color: var(--title-color); margin-right: var(--mb-1-25); }
+    .footer__subtitle { margin-bottom: var(--mb-1); }
+    .footer__item { margin-bottom: var(--mb-0-75); }
+    .footer__link { color: var(--text-color); font-size: var(--small-font-size); }
+    .footer__link:hover { color: var(--title-color); }
+    .footer__rights {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.5rem;
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid var(--input-color);
+    }
+    .footer__copy, .footer__terms-link { font-size: var(--small-font-size); color: var(--text-color-light); }
+    .footer__terms { display: flex; column-gap: 1.5rem; justify-content: center; }
+    .footer__terms-link:hover { color: var(--text-color); }
+
+    /* ========== Scrollup ========== */
+    .scrollup {
+      position: fixed;
+      right: 1rem;
+      bottom: -20%;
+      background-color: var(--first-color);
+      padding: .5rem;
+      display: flex;
+      opacity: .9;
+      z-index: var(--z-tooltip);
+      transition: .4s;
+    }
+    .scrollup:hover { background-color: var(--first-color-alt); opacity: 1; }
+    .scrollup__icon { color: var(--white-color); font-size: 1.2rem; }
+    .show-scroll { bottom: 5rem; }
+
+    /* ========== Scrollbar ========== */
+    ::-webkit-scrollbar { width: .60rem; background-color: var(--scroll-bar-color); }
+    ::-webkit-scrollbar-thumb { background-color: var(--scroll-thumb-color); }
+    ::-webkit-scrollbar-thumb:hover { background-color: var(--text-color-light); }
+
+    /* ========== Dark theme toggle ========== */
+    .nav__dark { display: flex; align-items: center; column-gap: 2rem; }
+    .change-theme, .change-theme-name { color: var(--white-color); }
+    .change-theme { cursor: pointer; font-size: 1rem; }
+    .change-theme-name { font-size: var(--small-font-size); }
+
+    /* ========== Media Queries ========== */
+    @media screen and (min-width: 568px) {
+      .destinations__grid { grid-template-columns: repeat(3, 1fr); }
+      .packages__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media screen and (min-width: 768px) {
+      .nav { height: calc(var(--header-height) + 1.5rem); }
+      .nav__link { color: var(--white-color); text-transform: initial; }
+      .nav__menu { display: flex; column-gap: 1rem; }
+      .nav__list { flex-direction: row; column-gap: 4rem; }
+      .nav__toggle, .nav__close { display: none; }
+      .change-theme-name { display: none; }
+      .active-link::before { background-color: var(--white-color); }
+      .scroll-header .nav__link { color: var(--text-color); }
+      .scroll-header .active-link { color: var(--title-color); }
+      .scroll-header .active-link::before { background-color: var(--title-color); }
+      .scroll-header .change-theme { color: var(--text-color); }
+
+      .about__container { grid-template-columns: repeat(2, 1fr); align-items: center; }
+      .about__data, .about__title { text-align: initial; }
+      .about__highlights { grid-template-columns: repeat(2, 1fr); }
+
+      .destinations__grid { grid-template-columns: 1fr 1fr; }
+      .packages__grid { grid-template-columns: repeat(3, 1fr); }
+      .tips__grid { grid-template-columns: repeat(2, 1fr); }
+      .footer__rights { flex-direction: row; justify-content: space-between; }
+      .section { padding: 7rem 0 2rem; }
+      .bali-hero__container { max-width: 968px; margin: 0 auto; padding-left: var(--mb-1); padding-right: var(--mb-1); }
+    }
+
+    @media screen and (min-width: 1024px) {
+      .container { margin-left: auto; margin-right: auto; }
+      .packages__grid { grid-template-columns: repeat(3, 1fr); }
+      .tips__grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery__grid { grid-template-columns: repeat(4, 1fr); }
+      .gallery__item--wide { grid-column: span 2; }
+    }
+
+    @media screen and (min-width: 1200px) {
+      .container { max-width: 1024px; }
+    }
+
+    /* Placeholder images using gradient (fallback jika gambar tidak load) */
+    .img-bali-1 { background: linear-gradient(135deg, #1a6b5a 0%, #0e3d32 100%); }
+    .img-bali-2 { background: linear-gradient(135deg, #2980b9 0%, #1a5276 100%); }
+  </style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="header" id="header">
+  <nav class="nav container">
+    <a href="index.html" class="nav__logo">
+      <i class="ri-map-pin-2-fill"></i> TravelWeb
+    </a>
+
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__list">
+        <li class="nav__item"><a href="index.html" class="nav__link">Beranda</a></li>
+        <li class="nav__item"><a href="#tentang" class="nav__link active-link">Tentang Bali</a></li>
+        <li class="nav__item"><a href="#destinasi" class="nav__link">Destinasi</a></li>
+        <li class="nav__item"><a href="#paket" class="nav__link">Paket</a></li>
+        <li class="nav__item"><a href="#galeri" class="nav__link">Galeri</a></li>
+      </ul>
+
+      <div class="nav__dark">
+        <i class="change-theme ri-moon-line" id="theme-button"></i>
+        <span class="change-theme-name" id="theme-name">Mode Gelap</span>
+      </div>
+
+      <i class="nav__close ri-close-line" id="nav-close"></i>
+    </div>
+
+    <div class="nav__toggle" id="nav-toggle">
+      <i class="ri-function-line"></i>
+    </div>
+  </nav>
+</header>
+
+<!-- ==================== MAIN ==================== -->
+<main class="main">
+
+  <!-- ===== HERO ===== -->
+  <section class="bali-hero" id="beranda">
+    <div class="bali-hero__bg"></div>
+
+    <div class="bali-hero__container">
+      <span class="bali-hero__badge">
+        <i class="ri-map-pin-2-fill"></i> Indonesia
+      </span>
+      <h1 class="bali-hero__title">Surga Tersembunyi<br>di Pulau Dewata</h1>
+      <p class="bali-hero__subtitle">
+        Temukan keindahan alam tropis, budaya Hindu yang kaya, serta pantai-pantai eksotis yang memukau. Bali menawarkan pengalaman wisata tak terlupakan.
+      </p>
+      <div class="bali-hero__actions">
+        <button class="button button--flex" onclick="document.getElementById('booking-modal').classList.add('active-modal')">
+          <i class="ri-calendar-check-line"></i> Pesan Sekarang
+        </button>
+        <a href="#destinasi" class="button button--outline button--flex">
+          <i class="ri-compass-3-line"></i> Jelajahi
+        </a>
+      </div>
+    </div>
+
+    <div class="bali-hero__stats">
+      <div class="bali-hero__stat">
+        <span class="bali-hero__stat-number">4.9</span>
+        <span class="bali-hero__stat-label">Rating</span>
+      </div>
+      <div class="bali-hero__stat">
+        <span class="bali-hero__stat-number">200+</span>
+        <span class="bali-hero__stat-label">Destinasi</span>
+      </div>
+      <div class="bali-hero__stat">
+        <span class="bali-hero__stat-number">50K+</span>
+        <span class="bali-hero__stat-label">Wisatawan</span>
+      </div>
+    </div>
+
+    <div class="bali-hero__scroll">
+      <span>Scroll</span>
+      <i class="ri-arrow-down-line"></i>
+    </div>
+  </section>
+
+  <!-- ===== TENTANG BALI ===== -->
+  <section class="section" id="tentang">
+    <div class="container">
+      <div class="about__container grid">
+        <div class="about__data">
+          <h2 class="section__title" style="text-align: left;">Mengapa Memilih Bali?</h2>
+          <p class="about__description">
+            Bali bukan sekadar destinasi wisata biasa — ia adalah pengalaman yang menyentuh jiwa. Dari sawah terasering di Ubud hingga pura kuno di tepi tebing, setiap sudut pulau ini menyimpan keajaiban yang menunggu untuk dijelajahi.
+          </p>
+          <div class="about__highlights">
+            <div class="about__highlight-item">
+              <i class="ri-leaf-line"></i>
+              <span>Alam tropis yang memukau dengan hutan dan pantai</span>
+            </div>
+            <div class="about__highlight-item">
+              <i class="ri-ancient-pavilion-line"></i>
+              <span>Budaya Hindu Bali yang unik dan otentik</span>
+            </div>
+            <div class="about__highlight-item">
+              <i class="ri-restaurant-line"></i>
+              <span>Kuliner khas Bali yang lezat dan beragam</span>
+            </div>
+            <div class="about__highlight-item">
+              <i class="ri-sun-line"></i>
+              <span>Cuaca tropis yang hangat sepanjang tahun</span>
+            </div>
+            <div class="about__highlight-item">
+              <i class="ri-surfing-line"></i>
+              <span>Surfing dan olahraga air kelas dunia</span>
+            </div>
+            <div class="about__highlight-item">
+              <i class="ri-hotel-line"></i>
+              <span>Akomodasi mewah hingga penginapan lokal</span>
+            </div>
+          </div>
+          <a href="#paket" class="button button--flex" style="display: inline-flex;">
+            Lihat Paket Wisata <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+
+        <div class="about__img">
+          <div class="about__img-overlay">
+            <img
+              src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=300&q=80"
+              alt="Pura Tanah Lot Bali"
+              class="about__img-one"
+            />
+          </div>
+          <div class="about__img-overlay">
+            <img
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80"
+              alt="Sawah Terasering Tegalalang"
+              class="about__img-two"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DESTINASI POPULER ===== -->
+  <section class="section" id="destinasi" style="background-color: var(--input-color);">
+    <div class="container">
+      <h2 class="section__title">Destinasi Populer</h2>
+      <div class="destinations__grid">
+        <!-- Card besar -->
+        <div class="dest__card dest__card--large">
+          <img
+            src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=80"
+            alt="Pura Besakih"
+            class="dest__img"
+          />
+          <div class="dest__overlay">
+            <h3 class="dest__title">Pura Besakih</h3>
+            <span class="dest__sub"><i class="ri-map-pin-line"></i> Karangasem</span>
+          </div>
+          <span class="dest__tag">Ikonik</span>
+        </div>
+
+        <!-- Cards kecil -->
+        <div class="dest__card">
+          <img
+            src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80"
+            alt="Pantai Kuta"
+            class="dest__img"
+          />
+          <div class="dest__overlay">
+            <h3 class="dest__title">Pantai Kuta</h3>
+            <span class="dest__sub"><i class="ri-map-pin-line"></i> Badung</span>
+          </div>
+        </div>
+
+        <div class="dest__card">
+          <img
+            src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=400&q=80"
+            alt="Tegalalang Rice Terrace"
+            class="dest__img"
+          />
+          <div class="dest__overlay">
+            <h3 class="dest__title">Tegalalang</h3>
+            <span class="dest__sub"><i class="ri-map-pin-line"></i> Ubud, Gianyar</span>
+          </div>
+          <span class="dest__tag">Populer</span>
+        </div>
+
+        <div class="dest__card">
+          <img
+            src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=400&q=80"
+            alt="Pantai Nusa Penida"
+            class="dest__img"
+          />
+          <div class="dest__overlay">
+            <h3 class="dest__title">Nusa Penida</h3>
+            <span class="dest__sub"><i class="ri-map-pin-line"></i> Klungkung</span>
+          </div>
+        </div>
+
+        <div class="dest__card">
+          <img
+            src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&q=80"
+            alt="Seminyak Beach"
+            class="dest__img"
+          />
+          <div class="dest__overlay">
+            <h3 class="dest__title">Seminyak</h3>
+            <span class="dest__sub"><i class="ri-map-pin-line"></i> Badung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PAKET WISATA ===== -->
+  <section class="section packages" id="paket">
+    <div class="container">
+      <h2 class="section__title">Paket Wisata Bali</h2>
+      <div class="packages__grid">
+
+        <div class="package__card">
+          <div class="package__img-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=80"
+              alt="Paket Pantai Bali"
+              class="package__img"
+            />
+          </div>
+          <div class="package__body">
+            <p class="package__category"><i class="ri-sun-line"></i> Pantai & Alam</p>
+            <h3 class="package__title">Bali Beach Explorer</h3>
+            <div class="package__meta">
+              <span><i class="ri-time-line"></i> 4 Hari 3 Malam</span>
+              <span><i class="ri-user-line"></i> 2 Orang</span>
+            </div>
+            <p style="font-size: var(--small-font-size); line-height: 1.7; margin-bottom: var(--mb-0-75);">
+              Jelajahi pantai-pantai terbaik Bali mulai dari Kuta, Seminyak, hingga Nusa Dua dalam satu perjalanan seru.
+            </p>
+            <div class="package__footer">
+              <div>
+                <span class="package__price-label">Mulai dari</span>
+                <p class="package__price">Rp 3.500.000 <span>/ orang</span></p>
+              </div>
+              <button class="button" style="padding: .6rem 1.2rem; font-size: var(--small-font-size);" onclick="document.getElementById('booking-modal').classList.add('active-modal')">
+                Pesan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="package__card">
+          <div class="package__img-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=500&q=80"
+              alt="Paket Budaya Bali"
+              class="package__img"
+            />
+          </div>
+          <div class="package__body">
+            <p class="package__category"><i class="ri-ancient-pavilion-line"></i> Budaya & Sejarah</p>
+            <h3 class="package__title">Bali Cultural Journey</h3>
+            <div class="package__meta">
+              <span><i class="ri-time-line"></i> 5 Hari 4 Malam</span>
+              <span><i class="ri-user-line"></i> 2 Orang</span>
+            </div>
+            <p style="font-size: var(--small-font-size); line-height: 1.7; margin-bottom: var(--mb-0-75);">
+              Selami kekayaan budaya Bali dengan mengunjungi pura-pura sakral, belajar tari tradisional, dan menikmati upacara adat.
+            </p>
+            <div class="package__footer">
+              <div>
+                <span class="package__price-label">Mulai dari</span>
+                <p class="package__price">Rp 4.200.000 <span>/ orang</span></p>
+              </div>
+              <button class="button" style="padding: .6rem 1.2rem; font-size: var(--small-font-size);" onclick="document.getElementById('booking-modal').classList.add('active-modal')">
+                Pesan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="package__card">
+          <div class="package__img-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=500&q=80"
+              alt="Paket Adventure Bali"
+              class="package__img"
+            />
+          </div>
+          <div class="package__body">
+            <p class="package__category"><i class="ri-mountain-line"></i> Petualangan</p>
+            <h3 class="package__title">Bali Adventure Pack</h3>
+            <div class="package__meta">
+              <span><i class="ri-time-line"></i> 6 Hari 5 Malam</span>
+              <span><i class="ri-user-line"></i> 4 Orang</span>
+            </div>
+            <p style="font-size: var(--small-font-size); line-height: 1.7; margin-bottom: var(--mb-0-75);">
+              Rafting di Sungai Ayung, mendaki Gunung Batur, dan diving di Nusa Penida — petualangan seru tak terlupakan!
+            </p>
+            <div class="package__footer">
+              <div>
+                <span class="package__price-label">Mulai dari</span>
+                <p class="package__price">Rp 5.800.000 <span>/ orang</span></p>
+              </div>
+              <button class="button" style="padding: .6rem 1.2rem; font-size: var(--small-font-size);" onclick="document.getElementById('booking-modal').classList.add('active-modal')">
+                Pesan
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TIPS PERJALANAN ===== -->
+  <section class="section" id="tips">
+    <div class="container">
+      <h2 class="section__title">Tips Perjalanan ke Bali</h2>
+      <div class="tips__grid">
+        <div class="tip__card">
+          <i class="ri-calendar-event-line tip__icon"></i>
+          <div>
+            <h3 class="tip__title">Waktu Terbaik</h3>
+            <p class="tip__text">Musim terbaik mengunjungi Bali adalah April–Oktober (musim kering). Hindari musim hujan Desember–Februari jika ingin banyak aktivitas outdoor.</p>
+          </div>
+        </div>
+        <div class="tip__card">
+          <i class="ri-shirt-line tip__icon"></i>
+          <div>
+            <h3 class="tip__title">Pakaian & Etika</h3>
+            <p class="tip__text">Saat mengunjungi pura, kenakan sarung dan selendang. Pakaian sopan sangat dihargai di tempat-tempat suci.</p>
+          </div>
+        </div>
+        <div class="tip__card">
+          <i class="ri-money-dollar-circle-line tip__icon"></i>
+          <div>
+            <h3 class="tip__title">Mata Uang</h3>
+            <p class="tip__text">Gunakan Rupiah (IDR). Tukar uang di money changer resmi atau ambil di ATM. Hindari penukaran di tempat tidak resmi.</p>
+          </div>
+        </div>
+        <div class="tip__card">
+          <i class="ri-taxi-line tip__icon"></i>
+          <div>
+            <h3 class="tip__title">Transportasi</h3>
+            <p class="tip__text">Sewa motor atau gunakan ride-hailing seperti Gojek/Grab. Untuk kenyamanan lebih, sewa mobil + supir tersedia dengan harga terjangkau.</p>
+          </div>
+        </div>
+        <div class="tip__card">
+          <i class="ri-restaurant-2-line tip__icon"></i>
+          <div>
+            <h3 class="tip__title">Kuliner Wajib</h3>
+            <p class="tip__text">Jangan lewatkan Babi Guling, Bebek Betutu, Nasi Campur Bali, dan Lawar. Temukan di warung lokal untuk rasa paling otentik.</p>
+          </div>
+        </div>
+        <div class="tip__card">
+          <i class="ri-shield-check-line tip__icon"></i>
+          <div>
+            <h3 class="tip__title">Keselamatan</h3>
+            <p class="tip__text">Bali relatif aman untuk wisatawan. Waspada barang bawaan di keramaian, dan selalu gunakan sunscreen saat beraktivitas di pantai.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALERI ===== -->
+  <section class="section" id="galeri" style="background-color: var(--input-color);">
+    <div class="container">
+      <h2 class="section__title">Galeri Bali</h2>
+      <div class="gallery__grid">
+        <div class="gallery__item gallery__item--wide">
+          <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?w=700&q=80" alt="Pura Besakih" />
+        </div>
+        <div class="gallery__item">
+          <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=400&q=80" alt="Tanah Lot" />
+        </div>
+        <div class="gallery__item">
+          <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&q=80" alt="Seminyak" />
+        </div>
+        <div class="gallery__item">
+          <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=400&q=80" alt="Tegalalang" />
+        </div>
+        <div class="gallery__item">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Rice Terrace" />
+        </div>
+        <div class="gallery__item gallery__item--wide">
+          <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=700&q=80" alt="Nusa Penida" />
+        </div>
+        <div class="gallery__item">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80" alt="Pantai Kuta" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta__bg">
+    <div class="container">
+      <div class="cta__content">
+        <h2 class="cta__title">Siap Menjelajahi Bali?</h2>
+        <p class="cta__description">
+          Hubungi tim kami sekarang dan dapatkan penawaran spesial untuk perjalanan impian Anda ke Pulau Dewata.
+        </p>
+        <div class="cta__actions">
+          <button class="button button--flex" style="background-color: var(--white-color); color: var(--first-color);" onclick="document.getElementById('booking-modal').classList.add('active-modal')">
+            <i class="ri-calendar-check-line"></i> Pesan Sekarang
+          </button>
+          <a href="tel:+6281234567890" class="button button--outline button--flex">
+            <i class="ri-phone-line"></i> Hubungi Kami
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="footer__container container grid">
+    <div class="footer__content grid">
+      <div>
+        <h3 class="footer__title">TravelWeb</h3>
+        <p class="footer__description">
+          Kami membantu Anda menemukan perjalanan terbaik ke destinasi wisata indah di seluruh Indonesia dan dunia.
+        </p>
+        <div>
+          <a href="#" class="footer__social"><i class="ri-facebook-fill"></i></a>
+          <a href="#" class="footer__social"><i class="ri-instagram-line"></i></a>
+          <a href="#" class="footer__social"><i class="ri-twitter-x-line"></i></a>
+          <a href="#" class="footer__social"><i class="ri-youtube-line"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="footer__subtitle">Destinasi</h3>
+        <ul>
+          <li class="footer__item"><a href="#" class="footer__link">Bali</a></li>
+          <li class="footer__item"><a href="#" class="footer__link">Lombok</a></li>
+          <li class="footer__item"><a href="#" class="footer__link">Raja Ampat</a></li>
+          <li class="footer__item"><a href="#" class="footer__link">Labuan Bajo</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer__subtitle">Layanan</h3>
+        <ul>
+          <li class="footer__item"><a href="#" class="footer__link">Paket Wisata</a></li>
+          <li class="footer__item"><a href="#" class="footer__link">Hotel & Villa</a></li>
+          <li class="footer__item"><a href="#" class="footer__link">Transportasi</a></li>
+          <li class="footer__item"><a href="#" class="footer__link">Tour Guide</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer__subtitle">Kontak</h3>
+        <ul>
+          <li class="footer__item" style="font-size: var(--small-font-size); display: flex; gap: .5rem;"><i class="ri-map-pin-line" style="color: var(--first-color);"></i> Jl. Raya Kuta No. 88, Bali</li>
+          <li class="footer__item" style="font-size: var(--small-font-size); display: flex; gap: .5rem;"><i class="ri-phone-line" style="color: var(--first-color);"></i> +62 812-3456-7890</li>
+          <li class="footer__item" style="font-size: var(--small-font-size); display: flex; gap: .5rem;"><i class="ri-mail-line" style="color: var(--first-color);"></i> info@travelweb.id</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__rights">
+      <span class="footer__copy">&#169; 2025 TravelWeb. Hak cipta dilindungi.</span>
+      <div class="footer__terms">
+        <a href="#" class="footer__terms-link">Kebijakan Privasi</a>
+        <a href="#" class="footer__terms-link">Syarat & Ketentuan</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== SCROLL UP ==================== -->
+<a class="scrollup" id="scroll-up">
+  <i class="scrollup__icon ri-arrow-up-line"></i>
+</a>
+
+<!-- ==================== BOOKING MODAL ==================== -->
+<div class="booking__modal" id="booking-modal">
+  <div class="booking__modal-content">
+    <button class="booking__modal-close" id="modal-close">
+      <i class="ri-close-line"></i>
+    </button>
+
+    <div class="booking__modal-header">
+      <h3 class="booking__modal-title">Pesan Wisata Bali</h3>
+      <p class="booking__modal-description">Isi formulir di bawah dan tim kami akan segera menghubungi Anda.</p>
+    </div>
+
+    <div class="input__group">
+      <label for="booking-name">Nama Lengkap</label>
+      <input type="text" id="booking-name" class="booking__input" placeholder="Masukkan nama lengkap" />
+    </div>
+
+    <div class="input__group">
+      <label for="booking-phone">Nomor Telepon / WhatsApp</label>
+      <input type="tel" id="booking-phone" class="booking__input" placeholder="+62 812 xxxx xxxx" />
+    </div>
+
+    <div class="input__group">
+      <label for="booking-package">Pilih Paket</label>
+      <select id="booking-package" class="booking__input">
+        <option value="">-- Pilih Paket Wisata --</option>
+        <option>Bali Beach Explorer (4H3M)</option>
+        <option>Bali Cultural Journey (5H4M)</option>
+        <option>Bali Adventure Pack (6H5M)</option>
+        <option>Paket Custom</option>
+      </select>
+    </div>
+
+    <div class="input__group">
+      <label for="booking-date">Tanggal Keberangkatan</label>
+      <input type="date" id="booking-date" class="booking__input" />
+    </div>
+
+    <div class="input__group">
+      <label for="booking-persons">Jumlah Peserta</label>
+      <input type="number" id="booking-persons" class="booking__input" placeholder="Contoh: 2" min="1" />
+    </div>
+
+    <button class="button button--flex booking__button">
+      <i class="ri-send-plane-line"></i> Kirim Pesanan
+    </button>
+  </div>
+</div>
+
+<!-- ==================== SCRIPT ==================== -->
+<script>
+  // === Nav Toggle ===
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const navClose = document.getElementById('nav-close');
+
+  if (navToggle) navToggle.addEventListener('click', () => navMenu.classList.add('show-menu'));
+  if (navClose) navClose.addEventListener('click', () => navMenu.classList.remove('show-menu'));
+
+  document.querySelectorAll('.nav__link').forEach(link => {
+    link.addEventListener('click', () => navMenu.classList.remove('show-menu'));
+  });
+
+  // === Scroll Header ===
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scroll-header', window.scrollY >= 80);
+  });
+
+  // === Scroll Up ===
+  const scrollUp = document.getElementById('scroll-up');
+  window.addEventListener('scroll', () => {
+    scrollUp.classList.toggle('show-scroll', window.scrollY >= 400);
+  });
+  scrollUp.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // === Active Nav Link ===
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    sections.forEach(section => {
+      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.offsetTop - 58;
+      const sectionId = section.getAttribute('id');
+      const navLink = document.querySelector(`.nav__link[href="#${sectionId}"]`);
+      if (navLink) {
+        navLink.classList.toggle('active-link', scrollY > sectionTop && scrollY <= sectionTop + sectionHeight);
+      }
+    });
+  });
+
+  // === Dark Theme ===
+  const themeButton = document.getElementById('theme-button');
+  const themeName = document.getElementById('theme-name');
+  const savedTheme = localStorage.getItem('selected-theme');
+  const savedIcon = localStorage.getItem('selected-icon');
+
+  if (savedTheme) {
+    document.body.classList.toggle('dark-theme', savedTheme === 'dark');
+    themeButton.classList.toggle('ri-sun-line', savedTheme === 'dark');
+    themeButton.classList.toggle('ri-moon-line', savedTheme !== 'dark');
+    if (themeName) themeName.textContent = savedTheme === 'dark' ? 'Mode Terang' : 'Mode Gelap';
+  }
+
+  themeButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+    const isDark = document.body.classList.contains('dark-theme');
+    themeButton.classList.toggle('ri-sun-line', isDark);
+    themeButton.classList.toggle('ri-moon-line', !isDark);
+    if (themeName) themeName.textContent = isDark ? 'Mode Terang' : 'Mode Gelap';
+    localStorage.setItem('selected-theme', isDark ? 'dark' : 'light');
+  });
+
+  // === Booking Modal ===
+  const modalClose = document.getElementById('modal-close');
+  const bookingModal = document.getElementById('booking-modal');
+
+  if (modalClose) {
+    modalClose.addEventListener('click', () => bookingModal.classList.remove('active-modal'));
+  }
+  bookingModal.addEventListener('click', (e) => {
+    if (e.target === bookingModal) bookingModal.classList.remove('active-modal');
+  });
+</script>
+
+</body>
+</html>
